@@ -56,7 +56,7 @@ findMax() {
     return current.data;
 }
 
-find(data) {
+find(data) { 
     let current = this.root;
     while (current.data !== data) {
         if (data < current.data) {
@@ -72,7 +72,7 @@ return current;
 }
 
 
-isPresent(data) { // why error? 
+isPresent(data) { //searches if this value going to be present in the tree
     let current = this.root;
     while (current) {
         if (data === current.data) {
@@ -125,12 +125,15 @@ remove(data) {
 }
  const bst = new BST();
 
- bst.add(4);
+
+ //commands to add and remove data
+bst.add(4);
 bst.add(2);
 bst.add(6);
 bst.add(1);
-bst.remove(1);
+bst.remove(4);
 
+//commands to find min, max and present values of the given data set
 console.log(bst.findMin());
 console.log(bst.findMax());
 console.log(bst.isPresent(4));
