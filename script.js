@@ -35,9 +35,11 @@ class BST {
         return null;
     }
 };
+
 return searchTree(node);
     }
 }
+
 findMin() {
     let current = this.root;
     while (current.left !== null) {
@@ -45,6 +47,7 @@ findMin() {
     }
     return current.data;
 }
+
 findMax() {
     let current = this.root;
     while (current.right !== null) {
@@ -52,6 +55,7 @@ findMax() {
     }
     return current.data;
 }
+
 find(data) {
     let current = this.root;
     while (current.data !== data) {
@@ -66,9 +70,9 @@ find(data) {
 }
 return current;
 }
-}
 
-isPresent(data) {
+
+isPresent(data) { // why error? 
     let current = this.root;
     while (current) {
         if (data === current.data) {
@@ -90,14 +94,14 @@ remove(data) {
             return null;
         }
         if (data == node.data) {
-            //if node has no children
+            //if left or right node has no children
             if (node.left == null && node.right == null) {
                 return null;
             }
-            if (node.left == null) { //if node on left has no children
+            if (node.left == null) { //if node on left has 1 child
                 return node.right
             }
-            if (node.left == null) { //if node on right has no children
+            if (node.left == null) { //if node on right has 1 child
                 return node.left
             }
             //node has two children
@@ -118,5 +122,15 @@ remove(data) {
     }
         this.root = removeNode(this.root, data);
     }
+}
+ const bst = new BST();
 
+ bst.add(4);
+bst.add(2);
+bst.add(6);
+bst.add(1);
+bst.remove(1);
 
+console.log(bst.findMin());
+console.log(bst.findMax());
+console.log(bst.isPresent(4));
