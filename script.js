@@ -147,6 +147,9 @@ remove(data) {
     return right + 1;
     };
     }
+    isBalanced() { //conditional statement that will return true or false (is tree balanced?)
+        return(this.findMinHeight() >= this.findMaxHeight() - 1)
+        }
 }
  const bst = new BST();
 
