@@ -151,14 +151,14 @@ remove(data) {
         return(this.findMinHeight() >= this.findMaxHeight() - 1)
         }
         inOrder() {
-            if (this.root == null) {
+            if (this.root == null) {//check if root is null
             return null;
             } else {
-            var result = new Array();
-            function traverseInOrder(node) {
-            node.left && traverseInOrder(node.left);
-            result.push(node.data);
-            node.right && traverseInOrder(node.right);
+            var result = new Array(); //create new array of result
+            function traverseInOrder(node) { //recursion (short circuit evaluation)
+            node.left && traverseInOrder(node.left); //if node.left exist, then we run traverseInOrder(); if first thing is true , it will run second command and vice versa
+            result.push(node.data); //push value in node onto array
+            node.right && traverseInOrder(node.right); //if node.right exist, call traverseInOrder()
             }
             traverseInOrder(this.root);
             return result;
@@ -178,18 +178,40 @@ remove(data) {
         return result;
         }
         }
+        postOrder() {
+            if (this.root == null) {
+            return null;
+            } else {
+            var result = new Array();
+            function traversePostOrder(node) {
+            node.left && traversePostOrder(node.left);
+            node.right && traversePostOrder(node.right);
+            result.push(node.data);
+            }
+            traversePostOrder(this.root);
+            return result;
+            };
+         
 }
- const bst = new BST();
+}
+const bst = new BST();
 
 
  //commands to add and remove data
-bst.add(4);
-bst.add(2);
-bst.add(6);
 bst.add(1);
-bst.remove(4);
+bst.add(2);
+bst.add(4);
+bst.add(5);
+bst.add(3);
+// bst.add(9);
+// bst.add(23);
+// bst.add(74);
+// bst.remove(4);
 
-//commands to find min, max and present values of the given data set
+//commands to find data, search tree, show results
 console.log(bst.findMin());
 console.log(bst.findMax());
 console.log(bst.isPresent(4));
+console.log(bst.inOrder());
+console.log(bst.preOrder());
+console.log(bst.postOrder());
