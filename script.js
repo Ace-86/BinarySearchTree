@@ -164,6 +164,20 @@ remove(data) {
             return result;
             };
             }
+        preOrder() {
+        if(this.root == null) {
+        return null;
+        } else {
+        var result = new Array();
+        function traversePreOrder(node) {
+        result.push(node.data);
+        node.left && traversePreOrder(node.left);
+        node.right && traversePreOrder(node.right);
+        };
+        traversePreOrder(this.root);
+        return result;
+        }
+        }
 }
  const bst = new BST();
 
