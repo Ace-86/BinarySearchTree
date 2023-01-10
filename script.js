@@ -122,6 +122,18 @@ remove(data) {
     }
         this.root = removeNode(this.root, data);
     }
+    findMinHeight(node = this.root) {
+        if (node == null) { //if nothing found in binary tree
+        return -1;
+        };
+        let left = this.findMinHeight(node.left);
+        let right = this.findMinHeight(node.right);
+        if(left <right) { //if left is less than right
+        return left + 1;
+        } else { //if left is more than right
+        return right + 1;
+        };
+        }
 }
  const bst = new BST();
 
