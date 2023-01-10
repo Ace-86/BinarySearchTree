@@ -190,19 +190,44 @@ remove(data) {
             }
             traversePostOrder(this.root);
             return result;
+            };        
+}
+levelOrder() {
+    let result = [];
+    let Q = [];
+    if (this.root != null) {
+        Q.push(this.root);
+        while(Q.length > 0) {
+            let node = Q.shift();
+            result.push(node.data);
+            if (node.left != null) {
+                Q.push(node.left);
             };
-         
+            if (node.right != null) {
+                Q.push(node.right);
+            };
+        };
+            return result;
+        } else {
+            return null;
+        };
+    };
 }
-}
+
 const bst = new BST();
 
 
  //commands to add and remove data
-bst.add(1);
-bst.add(2);
+bst.add(9);
 bst.add(4);
-bst.add(5);
+bst.add(17);
 bst.add(3);
+bst.add(6);
+bst.add(22);
+bst.add(5);
+bst.add(7);
+bst.add(20);
+
 // bst.add(9);
 // bst.add(23);
 // bst.add(74);
@@ -215,3 +240,4 @@ console.log(bst.isPresent(4));
 console.log(bst.inOrder());
 console.log(bst.preOrder());
 console.log(bst.postOrder());
+console.log(bst.levelOrder());
