@@ -1,11 +1,10 @@
-class Node { 
+class Node { //class constructor to set up new node (data), left and right
     constructor(data, left = null, right = null) {
         this.data = data;
         this.left = left;
         this.right = right;
-    } //class constructor to set up new node (data), left and right
+    } 
 }
-
 class BST {
     constructor() {
         this.root = null; //top of tree
@@ -35,7 +34,6 @@ class BST {
         return null;
     }
 };
-
 return searchTree(node);
     }
 }
@@ -147,6 +145,7 @@ remove(data) {
     return right + 1;
     };
     }
+
     isBalanced() { //conditional statement that will return true or false (is tree balanced?)
         return(this.findMinHeight() >= this.findMaxHeight() - 1)
         }
@@ -154,17 +153,18 @@ remove(data) {
             if (this.root == null) {//check if root is null
             return null;
             } else {
-            var result = new Array(); //create new array of result
+            var resultO = new Array(); //create new array of result
             function traverseInOrder(node) { //recursion (short circuit evaluation)
             node.left && traverseInOrder(node.left); //if node.left exist, then we run traverseInOrder(); if first thing is true , it will run second command and vice versa
-            result.push(node.data); //push value in node onto array
+            resultO.push(node.data); //push value in node onto array
             node.right && traverseInOrder(node.right); //if node.right exist, call traverseInOrder()
             }
             traverseInOrder(this.root);
-            return result;
+            return resultO;
             };
             }
-        preOrder() {
+    
+            preOrder() {
         if(this.root == null) {
         return null;
         } else {
@@ -178,7 +178,7 @@ remove(data) {
         return result;
         }
         }
-        postOrder() {
+            postOrder() {
             if (this.root == null) {
             return null;
             } else {
@@ -192,7 +192,7 @@ remove(data) {
             return result;
             };        
 }
-levelOrder() {
+        levelOrder() {
     let result = [];
     let Q = [];
     if (this.root != null) {
@@ -211,8 +211,21 @@ levelOrder() {
         } else {
             return null;
         };
+        function rebalanceTree(resultO) {
+            if(resultO.length === 0) return null;
+            let mid = Math.floor(resultO.length / 2);
+            let head = new TreeNode(resultO[mid]);
+            let left = resultO.slice(0, mid);
+            let right = resultO.slice(mid+1);
+            head.left = rebalanceTree(left);
+            head.right = rebalanceTree(right);
+            return head
+        }
+        console.log(rebalanceTree(resultO))
     };
 }
+
+
 
 const bst = new BST();
 
@@ -241,3 +254,4 @@ console.log(bst.inOrder());
 console.log(bst.preOrder());
 console.log(bst.postOrder());
 console.log(bst.levelOrder());
+// console.log(bst.rebalanceTree());
